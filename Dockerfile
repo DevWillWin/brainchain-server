@@ -1,4 +1,4 @@
-FROM ghcr.io/godotengine/godot:4.2.2-stable-headless
+FROM barichello/godot:4.2.2-headless
 
 WORKDIR /app
 
