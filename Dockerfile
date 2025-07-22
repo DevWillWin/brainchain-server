@@ -1,9 +1,18 @@
-FROM barichello/godot:4.2.2-headless
+FROM debian:bullseye-slim
 
+RUN apt-get update && apt-get install -y \
+    curl \
+    unzip \
+    libxcursor1 \
+    libxrandr2 \
+    libxi6 \
+    libxinerama1 \
+    libgl1-mesa-glx \
+    libasound2 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY . /app
 WORKDIR /app
 
-COPY . .
-
-EXPOSE 6005
-
-CMD ["--headless", "--path", ".", "--script", "SERVER.gd"]
+RUN chmod +x start.sh
+CMD ["./start.sh"]
